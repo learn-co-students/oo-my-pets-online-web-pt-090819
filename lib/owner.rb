@@ -1,7 +1,6 @@
 require 'pry'
 class Owner
   attr_reader :name, :species
-  attr_accessor  :pets
   # code goes here
   @@all = []
   def initialize(name)
@@ -61,10 +60,20 @@ class Owner
   end
 
   def sell_pets
-    cats.collect{|cat| cat.mood = "nervous"}
-    dogs.collect{|dog| dog.mood = "nervous"}
-    cats.clear
-    dogs.clear
+    
+    cats.each do |cat| 
+      cat.mood = "nervous"
+      cat.owner = nil
+    end
+    dogs.each do |dog| 
+      dog.mood = "nervous"
+      dog.owner = nil
+    end
+    
+  end
+
+  def list_pets
+  "I have #{self.dogs.count} dog(s), and #{self.cats.count} cat(s)."
   end
 
 end
